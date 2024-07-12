@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const genreSchema = new schema({
+const genreSchema = new Schema({
   name: {
+    type: String,
     enum: [
       "Science Fiction",
       "Fantasy",
@@ -14,6 +15,7 @@ const genreSchema = new schema({
       "History",
       "Romance",
       "Military",
+      "French Poetry",
     ],
     required: true,
     minlength: 3,
@@ -25,4 +27,4 @@ genreSchema.virtual("url").get(function () {
   return `/catalog/genre/${this._id}`;
 });
 
-export.default = mongoose.model("Genre", genreSchema);
+module.exports = mongoose.model("Genre", genreSchema);
